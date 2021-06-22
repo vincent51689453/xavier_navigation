@@ -1,0 +1,1 @@
+path_header = '/home/xavier/vincent-dev/navigation_ws/src/torch_object_detection/'
