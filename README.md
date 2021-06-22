@@ -13,4 +13,4 @@ In order to execute single image inferencing, please execute:
 rosrun torch_object_detection detect_image.py
 ```
 
-https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_detection.png
+![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_detection.png)
