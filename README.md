@@ -15,3 +15,13 @@ rosrun torch_object_detection detect_image.py
 ```
 
 ![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_detection.png)
+
+## Image Segmentation
+1. Image Segmentation
+
+For performing image segmentation using Mask-RCNN on an image, please execute:
+```
+rosrun torch_mask_rcnn detect_image.py
+```
+
+![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_segmentation.png)
