@@ -7,6 +7,8 @@ import numpy as np
 import cv2
 import random
 
+detect_mode = 0
+
 COCO_INSTANCE_CATEGORY_NAMES = [
     '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
     'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
@@ -23,20 +25,33 @@ COCO_INSTANCE_CATEGORY_NAMES = [
 ]
 
 def get_prediction(model, img_path, threshold):
-	img = Image.open(img_path)
+	# Source depends on detect mode
+	if(detect_mode == 0):
+		img = Image.open(img_path)
+	else:
+		img = img_path
+	
 	transform = T.Compose([T.ToTensor()])
 	img = transform(img)
 	model.cuda()
 	img = img.cuda()
+	pred = None
 	pred = model([img])
 	pred_score = list(pred[0]['scores'].detach().cpu().numpy())
-	pred_t = [pred_score.index(x) for x in pred_score if x > threshold][-1]
-	masks = (pred[0]['masks'] > 0.5).squeeze().detach().cpu().numpy()
-	pred_class = [COCO_INSTANCE_CATEGORY_NAMES[i] for i in list(pred[0]['labels'].cpu().numpy())]
-	pred_boxes = [[(i[0], i[1]), (i[2], i[3])] for i in list(pred[0]['boxes'].detach().cpu().numpy())]
-	masks = masks[:pred_t+1]
-	pred_boxes = pred_boxes[:pred_t+1]
-	pred_class = pred_class[:pred_t+1]
+	x = [pred_score.index(x) for x in pred_score if x > threshold]
+	# Check whether detection result is empty
+	if(len(x)>0):
+		pred_t = [pred_score.index(x) for x in pred_score if x > threshold][-1]
+		masks = (pred[0]['masks'] > 0.5).squeeze().detach().cpu().numpy()
+		pred_class = [COCO_INSTANCE_CATEGORY_NAMES[i] for i in list(pred[0]['labels'].cpu().numpy())]
+		pred_boxes = [[(i[0], i[1]), (i[2], i[3])] for i in list(pred[0]['boxes'].detach().cpu().numpy())]
+		masks = masks[:pred_t+1]
+		pred_boxes = pred_boxes[:pred_t+1]
+		pred_class = pred_class[:pred_t+1]
+	else:
+		masks = None
+		pred_boxes = None
+		pred_class = None
 	return masks, pred_boxes, pred_class
 
 def random_colour_masks(image):
@@ -53,12 +68,19 @@ def random_colour_masks(image):
 
 def core(model, img_path, threshold=0.5, rect_th=3, text_size=3, text_th=3):
 	masks, boxes, pred_cls = get_prediction(model, img_path, threshold)
-	img = cv2.imread(img_path)
+
+	# Source depends on detect mode
+	if(detect_mode == 0):
+		img = cv2.imread(img_path)
+	else:
+		img = img_path
+
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-	for i in range(len(masks)):
-		rgb_mask = random_colour_masks(masks[i])
-		img = cv2.addWeighted(img, 1, rgb_mask, 0.5, 0)
-		cv2.rectangle(img, boxes[i][0], boxes[i][0], color=(0, 255, 0), thickness=rect_th)
-		cv2.putText(img, pred_cls[i], boxes[i][0], cv2.FONT_HERSHEY_SIMPLEX, text_size, (0, 255, 0), 		
+	if(masks is not None):
+		for i in range(len(masks)):
+			rgb_mask = random_colour_masks(masks[i])
+			img = cv2.addWeighted(img, 1, rgb_mask, 0.5, 0)
+			cv2.rectangle(img, boxes[i][0], boxes[i][0], color=(0, 255, 0), thickness=rect_th)
+			cv2.putText(img, pred_cls[i], boxes[i][0], cv2.FONT_HERSHEY_SIMPLEX, text_size, (0, 255, 0), 		
 			thickness=text_th)
 	return img
