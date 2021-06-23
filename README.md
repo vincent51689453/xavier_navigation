@@ -24,4 +24,11 @@ For performing image segmentation using Mask-RCNN on an image, please execute:
 rosrun torch_mask_rcnn detect_image.py
 ```
 
+2. Realtime segmentation with USB camera
+
+For performing realtime segmentation using Mask-RCNN with USB camera, please execute:
+```
+rosrun torch_mask_rcnn detect_usb_camera.py
+```
+
 ![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_segmentation.png)

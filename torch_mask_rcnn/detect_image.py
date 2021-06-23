@@ -12,6 +12,9 @@ import maskrcnn
 # sudo apt-get install python3-matplotlib
 #Checkpoint path: /home/xavier/.cache/torch/checkpoints/maskrcnn_resnet50_fpn_coco-bf2d0c1e.pth
 
+# 0 -> image / 1 -> usb camera
+maskrcnn.detect_mode = 0
+
 # Load model checkpoint
 model = torchvision.models.detection.maskrcnn_resnet50_fpn(pretrained=True)
 model.eval()
