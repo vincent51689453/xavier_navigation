@@ -21,7 +21,7 @@ model.eval()
 
 # MaskRCNN inference
 img_path = '/home/xavier/vincent-dev/navigation_ws/src/torch_mask_rcnn/data/input_img/people.jpg'
-output_image = maskrcnn.core(model, img_path, threshold=0.5, rect_th=6, text_th=1, text_size=1)
+output_image = maskrcnn.core(model, img_path, threshold=0.5, rect_th=1, text_th=1, text_size=1)
 
 # Display ouput
 cv2.imshow('Output',output_image)

@@ -66,7 +66,8 @@ def random_colour_masks(image):
 	coloured_mask = np.stack([r, g, b], axis=2)
 	return coloured_mask
 
-def core(model, img_path, threshold=0.5, rect_th=3, text_size=3, text_th=3):
+def core(model, img_path, threshold=0.7, rect_th=3, text_size=3, text_th=3):
+	# Inference
 	masks, boxes, pred_cls = get_prediction(model, img_path, threshold)
 
 	# Source depends on detect mode
@@ -80,7 +81,7 @@ def core(model, img_path, threshold=0.5, rect_th=3, text_size=3, text_th=3):
 		for i in range(len(masks)):
 			rgb_mask = random_colour_masks(masks[i])
 			img = cv2.addWeighted(img, 1, rgb_mask, 0.5, 0)
-			cv2.rectangle(img, boxes[i][0], boxes[i][0], color=(0, 255, 0), thickness=rect_th)
-			cv2.putText(img, pred_cls[i], boxes[i][0], cv2.FONT_HERSHEY_SIMPLEX, text_size, (0, 255, 0), 		
+			cv2.rectangle(img, boxes[i][0], boxes[i][1], color=(0, 0,255), thickness=rect_th)
+			cv2.putText(img, pred_cls[i], boxes[i][0], cv2.FONT_HERSHEY_SIMPLEX, text_size, (0, 0, 255), 		
 			thickness=text_th)
 	return img

@@ -27,7 +27,7 @@ while True:
     ret,frame = camera.read()
     frame = cv2.resize(frame,(720,480))
     # MaskRCNN inference
-    output_image = maskrcnn.core(model, frame, threshold=0.5, rect_th=6, text_th=1, text_size=1)
+    output_image = maskrcnn.core(model, frame, threshold=0.5, rect_th=1, text_th=1, text_size=1)
     
     cv2.imshow('Mask RCNN Output:',output_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
