@@ -13,6 +13,17 @@ sudo apt-get install librealsense2-dev
 ```
 realsense-viewer
 ```
+3. Build pyrealsense2 from source for PYTHON2.7
+```
+git clone https://github.com/IntelRealSense/realsense-ros.git
+cd librealsense
+mkdir build
+cd build
+cmake ../ -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLE=/usr/bin/python2.7
+make -j4
+sudo make install
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib:/usr/local/lib/python2.7/pyrealsense2
+```
 
 ## Object detection
 1. Image Object Detection
