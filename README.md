@@ -25,6 +25,8 @@ sudo make install
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib:/usr/local/lib/python2.7/pyrealsense2
 ```
 
+After installation, you should be able to see /usr/local/lib/pythoon2.7/pyrealsense2 and /usr/local/lib contains librealsense2 files.
+
 ## Object detection
 1. Image Object Detection
 
