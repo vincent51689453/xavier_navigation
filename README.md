@@ -24,6 +24,7 @@ make -j4
 sudo make install
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib:/usr/local/lib/python2.7/pyrealsense2
 ```
+** Remember to add the last line into ~/.bashrc **
 
 After installation, you should be able to see /usr/local/lib/pythoon2.7/pyrealsense2 and /usr/local/lib contains librealsense2 files.
 
