@@ -15,7 +15,7 @@ realsense-viewer
 ```
 3. Build pyrealsense2 from source for PYTHON2.7
 ```
-git clone https://github.com/IntelRealSense/realsense-ros.git
+git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
 mkdir build
 cd build
@@ -27,6 +27,16 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/lib:/usr/local/lib/python2.7/pyrealsens
 ** Remember to add the last line into ~/.bashrc **
 
 After installation, you should be able to see /usr/local/lib/pythoon2.7/pyrealsense2 and /usr/local/lib contains librealsense2 files.
+
+4. Install ROS realsense package
+```
+sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
+```
+
+In order to start the realsense in ROS, please run
+```
+./start_realsense.sh
+```
 
 ## Object detection
 1. Image Object Detection
