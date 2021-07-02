@@ -1,2 +1,4 @@
 src/torch_object_detection/data
 src/torch_mask_rcnn/data
+build/
+devel/
