@@ -9,24 +9,19 @@ sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo bion
 sudo apt-get install librealsense2-utils
 sudo apt-get install librealsense2-dev
 ```
-2. Realsense Viewer
+2. Build pyrealsense2 from source for PYTHON2.7
 ```
-realsense-viewer
-```
-3. Build pyrealsense2 from source for PYTHON2.7
-```
-git clone https://github.com/IntelRealSense/librealsense.git
-cd librealsense
-mkdir build
-cd build
-cmake ../ -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLE=/usr/bin/python2.7
-make -j4
-sudo make install
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib:/usr/local/lib/python2.7/pyrealsense2
+cd installLibrealsense
+./buildLibrealsense.sh
 ```
 ** Remember to add the last line into ~/.bashrc **
 
 After installation, you should be able to see /usr/local/lib/pythoon2.7/pyrealsense2 and /usr/local/lib contains librealsense2 files.
+
+3. Verify installation by realsense-viewer
+```
+realsense-viewer
+```
 
 4. Install ROS realsense package
 ```
