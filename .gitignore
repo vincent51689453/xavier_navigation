@@ -1,2 +1,2 @@
-torch_object_detection/data
-torch_mask_rcnn/data
+src/torch_object_detection/data
+src/torch_mask_rcnn/data
