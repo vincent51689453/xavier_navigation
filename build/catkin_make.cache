@@ -1,2 +1,0 @@
-torch_mask_rcnn:torch_object_detection
--DCATKIN_DEVEL_PREFIX=/home/xavier/vincent-dev/xavier_navigation/devel -DCMAKE_INSTALL_PREFIX=/home/xavier/vincent-dev/xavier_navigation/install -G Unix Makefiles

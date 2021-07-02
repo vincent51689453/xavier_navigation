@@ -1,8 +1,0 @@
-prefix=/home/xavier/vincent-dev/xavier_navigation/install
-
-Name: torch_mask_rcnn
-Description: Description of torch_mask_rcnn
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
