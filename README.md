@@ -31,7 +31,7 @@ sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 
 In order to start the realsense in ROS, please run
 ```
-./start_realsense.sh
+./start_realsense_publish.sh
 ```
 
 ### Pytorch Installation for python2
