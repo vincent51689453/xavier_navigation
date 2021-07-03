@@ -53,6 +53,17 @@ cd ../  # attempting to load torchvision from build dir will result in import er
 pip install 'pillow<7' # always needed for Python 2.7, not needed torchvision v0.5.0+ with Python 3.6
 ```
 
+### VSCode Installation
+After downloading the debian package from https://code.visualstudio.com/Download
+```
+sudo dpkg -i <vscode_package>.dep
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+#start vscode
+code 
+```
+
 ## System Packages
 ### Object detection
 1. Image Object Detection
@@ -90,3 +101,9 @@ rosrun torch_mask_rcnn detect_usb_camera.py
 ```
 
 ![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_segmentation.png)
+
+## Visualization
+1. RQT Multiple Image viewer
+```
+./rqt_tools.sh
+```

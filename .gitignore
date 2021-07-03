@@ -1,4 +1,6 @@
 src/torch_object_detection/data
+src/torch_object_detect/*.pyc
 src/torch_mask_rcnn/data
+src/torch_mask_rcnn/*.pyc
 build/
 devel/

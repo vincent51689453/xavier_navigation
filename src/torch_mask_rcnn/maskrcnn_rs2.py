@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 import random
+import node_config as NC
 
-detect_mode = 0
+
 
 COCO_INSTANCE_CATEGORY_NAMES = [
     '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
@@ -24,12 +25,7 @@ COCO_INSTANCE_CATEGORY_NAMES = [
     'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
 ]
 
-def get_prediction(model, img_path, threshold):
-	# Source depends on detect mode
-	if(detect_mode == 0):
-		img = Image.open(img_path)
-	else:
-		img = img_path
+def get_prediction(model,img, threshold):
 	transform = T.Compose([T.ToTensor()])
 	img = transform(img)
 	model.cuda()
@@ -66,18 +62,17 @@ def random_colour_masks(image):
 	return coloured_mask
 
 def core(model, img_path, threshold=0.7, rect_th=3, text_size=3, text_th=3):
-	# Inference
-	masks, boxes, pred_cls = get_prediction(model, img_path, threshold)
-
 	# Source depends on detect mode
-	if(detect_mode == 0):
-		img = cv2.imread(img_path)
+	if(NC.detect_mode == 0):
+		img = cv2.imread('/home/xavier/vincent-dev/xavier_navigation/src/torch_mask_rcnn/data/people.jpg')
 	else:
 		img = img_path
 
+	# Inference
+	masks, boxes, pred_cls = get_prediction(model, img, threshold)
+
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 	if(masks is not None):
-		print("Objects found!")
 		for i in range(len(masks)):
 			rgb_mask = random_colour_masks(masks[i])
 			img = cv2.addWeighted(img, 1, rgb_mask, 0.5, 0)
