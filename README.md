@@ -2,7 +2,6 @@
 It is a navigation package for AGV using NVIDIA Jetson Xavier NX
 
 ## Environmental Setup
------------------------------------
 ### Realsense Installation
 1. Install realsense SDK 2.0
 ```
@@ -43,19 +42,18 @@ sudo apt-get install libopenblas-base libopenmpi-dev
 pip install future torch-1.4.0-cp27-cp27mu-linux_aarch64.whl
 ```
 
-Afterward, torchvision can be intalled by the following as well.
+Afterward, torchvision v0.5.0 can be intalled by the following as well.
 ```
 sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
-git clone --branch <version> https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
+git clone --branch v0.5.0 https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
 cd torchvision
-export BUILD_VERSION=0.x.0  # where 0.x.0 is the torchvision version  
+export BUILD_VERSION=0.5.0  # where 0.5.0 is the torchvision version  
 python3 setup.py install --user
 cd ../  # attempting to load torchvision from build dir will result in import error
 pip install 'pillow<7' # always needed for Python 2.7, not needed torchvision v0.5.0+ with Python 3.6
 ```
 
 ## System Packages
------------------------------------
 ### Object detection
 1. Image Object Detection
 
