@@ -71,7 +71,6 @@ def core(model, img_path, threshold=0.7, rect_th=3, text_size=3, text_th=3):
 	# Inference
 	masks, boxes, pred_cls = get_prediction(model, img, threshold)
 
-	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 	if(masks is not None):
 		for i in range(len(masks)):
 			rgb_mask = random_colour_masks(masks[i])

@@ -72,7 +72,7 @@ def color_callback(ros_msg):
     bridge = CvBridge()
     image = bridge.imgmsg_to_cv2(ros_msg)
     image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-    #image = cv2.resize(image,(720,480))
+    image = cv2.resize(image,(640,480))
     NC.color_image = image
     # Display
     #cv2.imshow('rgb_image',NC.color_image)
