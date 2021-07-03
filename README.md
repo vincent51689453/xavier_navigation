@@ -100,6 +100,12 @@ For performing realtime segmentation using Mask-RCNN with USB camera, please exe
 rosrun torch_mask_rcnn detect_usb_camera.py
 ```
 
+3. Realtime segmentation with Realsense D435i
+```
+./start_realsense_publish.sh
+./start_realsnese_maskrcnn.sh
+```
+
 ![image](https://github.com/vincent51689453/xavier_navigation/blob/melodic-jp4.4/git_image/image_segmentation.png)
 
 ## Visualization
