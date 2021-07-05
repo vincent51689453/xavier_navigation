@@ -50,14 +50,30 @@ def get_prediction(model,img, threshold):
 	return masks, pred_boxes, pred_class
 
 def random_colour_masks(image):
-	colours = [[0, 255, 0],[0, 0, 255],[255, 0, 0],[0, 255, 255],
-				[255, 255, 0],[255, 0, 255],[80, 70, 180],
-				[250, 80, 190],[245, 145, 50],[70, 150, 250],
-				[50, 190, 190]]
+	colours = [[0,0,255],
+    [0,128,255],
+    [0,255,255],
+    [0,255,128],
+    [0,255,0],
+    [102,204,0],
+    [255,255,0],
+    [255,128,0],
+    [255,0,0],
+    [255,0,127],
+    [128,128,128],
+    [204,204,255],
+    [204,255,255],
+    [255,204,229],
+    [51,0,102],
+    [153,76,0],
+    [0,102,51],
+    [0,51,102],
+    [0,153,0],
+    [102,102,0]]
 	r = np.zeros_like(image).astype(np.uint8)
 	g = np.zeros_like(image).astype(np.uint8)
 	b = np.zeros_like(image).astype(np.uint8)
-	r[image == 1], g[image == 1], b[image == 1] = colours[random.randrange(0, 10)]
+	r[image == 1], g[image == 1], b[image == 1] = colours[random.randrange(0, 19)]
 	coloured_mask = np.stack([r, g, b], axis=2)
 	return coloured_mask
 

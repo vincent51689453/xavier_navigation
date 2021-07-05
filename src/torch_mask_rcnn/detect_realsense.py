@@ -130,7 +130,7 @@ def main():
         if((NC.depth_image is not None)and(NC.color_image is not None)):
             
             # Unsupervised Segmentation (RGB):
-            color_output = maskrcnn.core(model, NC.color_image, threshold=0.5, rect_th=1, text_th=1, text_size=1)
+            color_output = maskrcnn.core(model, NC.color_image, threshold=0.75, rect_th=1, text_th=1, text_size=1)
             #color_output = NC.color_image
             # Visulaiztion in RVIZ
             image_pub_color.publish(bridge.cv2_to_imgmsg(color_output, "bgr8"))
